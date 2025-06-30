@@ -31,7 +31,11 @@ repos:
 
 ## Configuration
 
-textlint requires rules to be effective. Create a `.textlintrc` file in your repository root:
+textlint requires rules to be effective. There are two ways to configure textlint rules:
+
+### Option 1: NPM Dependencies (Traditional Method)
+
+Create a `.textlintrc` file in your repository root:
 
 ```json
 {
@@ -47,6 +51,37 @@ Install the rules as development dependencies in your project:
 ```bash
 npm install --save-dev @textlint-rule/textlint-rule-no-unmatched-pair textlint-rule-common-misspellings
 ```
+
+### Option 2: Additional Dependencies (Recommended)
+
+You can specify textlint and its rules directly in your pre-commit configuration without requiring NPM dependencies in your project:
+
+```yaml
+repos:
+  - repo: https://github.com/ryanlewis/pre-commit-mirror-textlint
+    rev: v15.1.0
+    hooks:
+      - id: textlint
+        args: ["--rule", "terminology"]
+        additional_dependencies:
+          - textlint@15.1.0
+          - textlint-rule-terminology@5.2.13
+```
+
+Create a `.textlintrc` file in your repository root:
+
+```json
+{
+  "filters": {
+    "comments": true
+  },
+  "rules": {
+    "terminology": true
+  }
+}
+```
+
+This approach is particularly useful when you don't want to add NPM dependencies to your project or when working in non-JavaScript projects.
 
 ## Version
 
