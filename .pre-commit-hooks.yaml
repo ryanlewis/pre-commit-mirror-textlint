@@ -1,0 +1,10 @@
+-   id: textlint
+    name: textlint
+    description: ''
+    entry: textlint
+    language: node
+    'types': [markdown]
+    args: []
+    require_serial: false
+    additional_dependencies: ["textlint@0.0.2"]
+    minimum_pre_commit_version: '0'
