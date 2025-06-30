@@ -6,5 +6,5 @@
     'types': [markdown]
     args: []
     require_serial: false
-    additional_dependencies: ["textlint@12.2.0"]
+    additional_dependencies: ["textlint@12.2.1"]
     minimum_pre_commit_version: '0'
