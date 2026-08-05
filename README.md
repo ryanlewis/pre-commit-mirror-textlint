@@ -1,5 +1,23 @@
 # textlint pre-commit hook
 
+> [!CAUTION]
+> **This repository is archived and no longer maintained** (August 2026).
+>
+> **Why:** pre-commit's `language: node` hooks resolve transitive npm dependencies live at
+> install time — only the top-level package is pinned. During the 4 August 2026
+> keyv/cacheable supply-chain attack, a fully pinned `textlint` hook from this mirror could
+> still install the malicious `cacheable@2.5.1` through the floating chain
+> `textlint → file-entry-cache → flat-cache → cacheable`. Pinning a `rev:` here never
+> protected you from that, and pre-commit has no lockfile mechanism to fix it
+> ([pre-commit#1963](https://github.com/pre-commit/pre-commit/issues/1963)).
+>
+> **What to do instead:** run textlint from a `package.json` governed by a committed
+> `package-lock.json` (`npm ci`), via your CI or a hook manager that uses your project's
+> lockfile. Additionally consider `min-release-age=7` and `ignore-scripts=true` in `.npmrc`
+> (npm ≥ 11.10).
+>
+> Existing tags remain usable but frozen — no further textlint versions will be mirrored.
+
 This repository provides [textlint](https://github.com/textlint/textlint) as a [pre-commit](https://pre-commit.com/) hook.
 
 ## About textlint
